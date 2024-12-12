@@ -12,8 +12,14 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/join")
+    @GetMapping("/member")
     public String join(){
-        return "member/join";
+        return "/member/index";
     }
+
+    @GetMapping("/board")
+    public String board(){
+        return "/board/index";
+    }
+
 }

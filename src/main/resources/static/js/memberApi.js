@@ -110,6 +110,7 @@ console.log(err);
 }
 //회원수정 memberUpdateFn
 const memberUpdateFn=(event)=>{
+
 const id2=document.querySelector('#id2');
 const email2=document.querySelector('#email2');
 const pw2=document.querySelector('#pw2');
@@ -182,6 +183,7 @@ const createTime2=document.querySelector('#createTime2');
     pw2.value="";
     nickName2.value="";
     createTime2.value="";
+
     fetchMemberList();
     }
 

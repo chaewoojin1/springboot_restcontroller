@@ -16,4 +16,8 @@ public interface BoardService {
     BoardDto boardUpdate(BoardDto boardDto);
 
     int BoardDelete(Long id);
+
+    Long boardwrite(BoardDto boardDto);
+
+//    void updateHit(Long id);
 }

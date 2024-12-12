@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public class BoardEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="board_id")
     private Long id;
 
@@ -47,19 +47,27 @@ public class BoardEntity {
     @JoinColumn(name = "member_id")// Long member_id;
     private MemberEntity memberEntity;
 
-    public static BoardEntity toInsertBoardEntity(BoardDto boardDto){
+    public static BoardEntity toWriteBoardEntity(BoardDto boardDto){
         BoardEntity boardEntity=new BoardEntity();
         boardEntity.setTitle(boardDto.getTitle());
-        boardEntity.setContent(boardEntity.getContent());
+        boardEntity.setContent(boardDto.getContent());
+        boardEntity.setHit(0);
+//        MemberEntity memberEntity1=new MemberEntity();
+//        memberEntity1.setId(boardDto.getId());
+        boardEntity.setMemberEntity(boardDto.getMemberEntity());
         return  boardEntity;
     }
     public static BoardEntity toUpdateBoardEntity(BoardDto boardDto){
         BoardEntity boardEntity=new BoardEntity();
         boardEntity.setId(boardDto.getId());
         boardEntity.setTitle(boardDto.getTitle());
-        boardEntity.setTitle(boardDto.getContent());
+        boardEntity.setContent(boardDto.getContent());
         boardEntity.setHit(boardDto.getHit());
         boardEntity.setCreateTime(boardDto.getCreateTime());
+//        MemberEntity memberEntity1=new MemberEntity();
+//        memberEntity1.setId(boardDto.getId());
+        boardEntity.setMemberEntity(boardDto.getMemberEntity());
+
         return boardEntity;
     }
 

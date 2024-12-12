@@ -13,13 +13,13 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/member")
 @RequiredArgsConstructor
-public class RestApiController {
+public class MemberRestApiController {
 
     private final MemberServiceImpl memberService;
 
-    @PostMapping("/member/join")
+    @PostMapping("/join")
     public ResponseEntity<Long>join(@RequestBody MemberDto memberDto){
 //        Map<String ,List<MemberDto>> map=new HashMap<>();
 
@@ -32,7 +32,7 @@ public class RestApiController {
         return new ResponseEntity<>(memberId, HttpStatus.OK);
     }
 
-    @GetMapping("/member/memberList")
+    @GetMapping("/memberList")
     public ResponseEntity<Map<String, List<MemberDto> >> memberList(){
         Map<String ,List<MemberDto>> map=new HashMap<>();
         List<MemberDto> memberDtoList=memberService.memberList();
@@ -41,21 +41,21 @@ public class RestApiController {
     }
 
     //회원조회
-    @GetMapping("/member/detail/{id}")
+    @GetMapping("/detail/{id}")
     public ResponseEntity<Map<String,MemberDto>> detail(@PathVariable("id") Long id) {
         Map<String, MemberDto> map = new HashMap<>();
         MemberDto member = memberService.memberdetail(id);
         map.put("member", member);
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
-    @PutMapping("/member/update")
+    @PutMapping("/update")
     public ResponseEntity<Map<String,MemberDto>>update(@RequestBody MemberDto memberDto){
             Map<String ,MemberDto> map=new HashMap<>();
             MemberDto memberUpdate=memberService.memberUpdate(memberDto);
             map.put("member",memberUpdate);
             return new ResponseEntity<>(map,HttpStatus.OK);
         }
-    @DeleteMapping("/member/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Map<String,Integer>>delete(@PathVariable ("id") Long id){
         Map<String ,Integer> map=new HashMap<>();
         Integer rs=memberService.MemberDelete(id);
